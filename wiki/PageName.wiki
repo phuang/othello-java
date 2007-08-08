@@ -1,6 +1,4 @@
-#summary One-sentence summary of this page.
 #labels Featured
-
 = Othello =
 == Build ==
  * you need install jdk 1.5 in your system
@@ -8,5 +6,5 @@
  * run command: `ant dist`
 
 == Run ==
- * java -jar dist/othello-*.jar
+ * java -jar dist/othello-{date}.jar
 ki pages
