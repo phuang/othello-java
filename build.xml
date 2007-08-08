@@ -1,0 +1,68 @@
+<project name="othello" default="build">
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist" location="dist"/>
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="init">
+    	<tstamp />
+    	<mkdir dir="${build}"/>
+    </target>
+	
+	<!-- ================================= 
+          target: compile              
+         ================================= -->
+    <target name="compile" depends="init" description="compile sources">
+        <javac 
+        	srcdir="${src}" 
+        	destdir="${build}"
+        />
+    	<copy todir="${build}">
+    		<fileset dir="${src}">
+    			<exclude name="**/*.java"/>
+    		</fileset>
+    	</copy>
+    </target>
+	<!-- ================================= 
+          target: build              
+         ================================= -->
+	<target name="build" depends="compile" description="build all src">
+    </target>
+	
+	<!-- ================================= 
+          target: test              
+         ================================= -->
+    <target name="test" depends="build" description="test">
+        <java 
+        	classname="hp.game.othello.Othello" 
+        	classpath="${build}"
+        	fork="true"
+        />
+    </target>
+
+		
+	<!-- ================================= 
+          target: dist              
+         ================================= -->
+    <target name="dist" depends="compile" description="--> description">
+    	<mkdir dir="${dist}" />
+        <jar
+        	destfile="${dist}/othello-${DSTAMP}.jar" 
+        	basedir="${build}" >
+        	<manifest>
+        		<attribute 
+        			name="Main-Class" 
+        			value="hp.game.othello.Othello"/>
+        	</manifest>
+        </jar>
+    </target>
+
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+    <target name="clean" description="clean up">
+        <delete dir="${build}" />
+        <delete dir="${dist}" />
+    </target>
+</project>
