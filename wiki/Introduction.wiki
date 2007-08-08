@@ -7,3 +7,4 @@
 
 == Run ==
  * java -jar dist/othello-{date}.jar
+ * ant test
